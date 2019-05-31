@@ -1,4 +1,3 @@
-import time
 
 import pygame
 from pygame.sprite import Sprite
@@ -15,18 +14,33 @@ class Bullet(Sprite):
         self.speed = 1
         self.frequency = 0.5
         self.gun = gun
+        self.speed_x = 1
+        self.speed_y = 1
         self.mouse_event = event
         self.rect.centerx = float(gun.rect.centerx)
         self.rect.centery = float(gun.rect.centery + 10)
         self.color = (0, 0, 255)
         mouse_x, mouse_y = self.mouse_event.pos
-        mouse_z = float((mouse_x - self.rect.centerx) ** 2 +
-                        (mouse_y - self.rect.centery) ** 2) ** 0.5
-        self.speed_x = mouse_x / mouse_z * self.speed
-        self.speed_y = mouse_y / mouse_z * self.speed
-        if mouse_x < self.rect.centerx:
+        # mouse_z = float((mouse_x - self.rect.centerx) ** 2 +
+        #                 (mouse_y - self.rect.centery) ** 2) ** 0.5
+        self.set_speed(mouse_x, mouse_y)
+
+    def set_speed(self, mouse_x, mouse_y):
+        tmp_x = mouse_x - self.rect.centerx
+        tmp_y = mouse_y - self.rect.centery
+        if abs(tmp_x) > abs(tmp_y):
+            self.speed_x = abs(float(tmp_x) / float(tmp_y) * self.speed)
+            self.speed_y = self.speed
+        else:
+            self.speed_x = self.speed
+            self.speed_y = abs(float(tmp_y) / float(tmp_x) * self.speed)
+        if abs(self.speed_x) > 3:
+            self.speed_x = self.speed_x / abs(self.speed_x) * 3
+        if abs(self.speed_y) > 3:
+            self.speed_y = self.speed_y / abs(self.speed_y) * 3
+        if tmp_x < 0:
             self.speed_x *= -1
-        if mouse_y > self.rect.centery:
+        if tmp_y > 0:
             self.speed_y *= -1
 
     def move(self):
