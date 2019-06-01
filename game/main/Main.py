@@ -22,7 +22,7 @@ def run_game():
         blit_flush(people, hero_bullets)
 
         for bullet in hero_bullets.copy():
-            if bullet.rect.centerx <= 0 | bullet.rect.centery <= 0:
+            if bullet.rect.centerx <= 0 or bullet.rect.centery <= 0:
                 hero_bullets.remove(bullet)
 
         pygame.display.flip()

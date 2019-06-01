@@ -1,8 +1,6 @@
 import time
 
-import pygame
-
-from game.main.gun.bullet import Bullet
+from game.main.gun.hero_bullet import HeroBullet
 
 
 class Gun:
@@ -25,7 +23,7 @@ class Gun:
         self.moving_down = False
 
     def shot(self, event, hero_bullets):
-        bullet = Bullet(self, event)
+        bullet = HeroBullet(self, event)
         bullet.move()
         hero_bullets.add(bullet)
 
