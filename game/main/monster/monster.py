@@ -2,9 +2,27 @@ from random import random
 
 import math
 
-
 from game.main.common.util.math_function import get_direction
 from game.main.gun.monster_bullet import MonsterBullet
+
+
+def get_init_position(random_int, settings):
+    position = {}
+    random_x = int(random.uniform(0, settings.scree_width))
+    random_y = int(random.uniform(0, settings.scree_height))
+    if random_int == 1:
+        position["init_x"] = random_x
+        position["init_y"] = 10
+    elif random_int == 2:
+        position["init_x"] = settings.scree_width - 10
+        position["init_y"] = -1 * random_y
+    elif random_int == 3:
+        position["init_x"] = random_x
+        position["init_y"] = -1 * settings.scree_height + 10
+    else:
+        position["init_x"] = 10
+        position["init_y"] = -1 * random_y
+    return position
 
 
 class BaseMonster:
