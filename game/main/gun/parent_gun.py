@@ -1,8 +1,6 @@
 import time
 from threading import Thread
 
-from game.main.gun.hero_bullet import HeroBullet
-
 
 class Gun:
 
@@ -23,16 +21,8 @@ class Gun:
         self.moving_up = False
         self.moving_down = False
 
-    def shot(self, event, hero_bullets):
-        if self.current_bom > 0 and (not self.is_changing):
-            bullet = HeroBullet(self, event)
-            bullet.move()
-            hero_bullets.add(bullet)
-            self.current_bom -= 1
-        elif (not self.is_changing) and self.current_bom <= 0:
-            self.change_bomb()
-        else:
-            return
+    def shot(self, event, bullets_group):
+        pass
 
     def change_bomb(self):
         Thread(target=self.wait_change_bomb).start()
