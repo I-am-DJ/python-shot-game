@@ -18,4 +18,4 @@ class MonsterBullet(Bullet):
         tmp_y = self.hero_y - self.rect.centery
         mouse_z = get_direction(tmp_x, tmp_y)
         self.speed_x = tmp_x / mouse_z * self.speed
-        self.speed_y = tmp_y / mouse_z * self.speed
+        self.speed_y = -1 * tmp_y / mouse_z * self.speed

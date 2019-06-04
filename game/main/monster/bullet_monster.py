@@ -1,4 +1,6 @@
 import random
+import time
+from threading import Thread
 
 import pygame
 
@@ -13,6 +15,9 @@ class BulletMonster(BaseMonster):
         self.image = pygame.image.load("F:/python/test/game/main/image/bulletMonster.jpg")
         self.init_position(setting)
         self.gun = MonsterGun(screen)
+        self.frequency = 0.5
+        self.stop = False
+        self.move_stop = False
         super().__init__(self.image, self.init_x, self.init_y, self.speed, self.gun, hero, screen)
 
     def init_position(self, setting):
@@ -24,12 +29,21 @@ class BulletMonster(BaseMonster):
 
     def monster_action(self, monster_bullets):
         """simple action"""
-        if self.gun.stop:
-            pass
-        if self.gun.is_changing:
+        if self.stop:
+            return
+        if self.gun.is_changing and self.move_stop is False:
             self.move()
-        else:
+            Thread(target=self.monster_move_stop).start()
+        elif self.gun.is_changing is not True:
             self.shot_hero(monster_bullets)
+            Thread(target=self.monster_stop).start()
 
+    def monster_stop(self):
+        self.stop = True
+        time.sleep(self.frequency)
+        self.stop = False
 
-
+    def monster_move_stop(self):
+        self.move_stop = True
+        time.sleep(0.01)
+        self.move_stop = False

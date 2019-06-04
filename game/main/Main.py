@@ -28,7 +28,9 @@ def run_game():
         for bullet in hero_bullets.copy():
             if bullet.rect.centerx <= 0 or bullet.rect.centery <= 0:
                 hero_bullets.remove(bullet)
-
+        for bullet in monster_bullets.copy():
+            if bullet.rect.centerx <= 0 or bullet.rect.centery <= 0:
+                monster_bullets.remove(bullet)
         pygame.display.flip()
 
 
