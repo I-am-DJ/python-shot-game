@@ -11,7 +11,7 @@ class DeathMonster(BaseMonster):
         self.speed = 3
         self.image = pygame.image.load("F:/python/test/game/main/image/deathMonster.jpg")
         self.init_position(setting)
-        super().__init__(self.image, self.init_x, self.init_y, self.speed, None, hero, screen)
+        super().__init__(self.image, self.init_x, self.init_y, self.speed, None, hero, screen, blood=5)
 
     def init_position(self, setting):
         """小怪出生位置为边框附近"""

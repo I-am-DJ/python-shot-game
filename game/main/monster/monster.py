@@ -27,7 +27,7 @@ def get_init_position(random_int, settings):
 
 class BaseMonster(Sprite):
 
-    def __init__(self, image, init_x, init_y, speed, gun, hero, screen):
+    def __init__(self, image, init_x, init_y, speed, gun, hero, screen, blood):
         super().__init__()
         self.image = image
         self.init_x = init_x
@@ -36,6 +36,7 @@ class BaseMonster(Sprite):
         self.hero = hero
         self.speed = speed
         self.screen = screen
+        self.blood = blood
 
         self.rect = self.image.get_rect()
         self.rect.centerx = self.init_x
@@ -93,3 +94,7 @@ class BaseMonster(Sprite):
             self.rect.centery = 10
         self.gun.rect.centerx = self.rect.centerx - 10
         self.gun.rect.centery = self.rect.centery
+
+    def is_hurt(self, gun):
+        self.blood -= gun.hurt
+        return self.blood

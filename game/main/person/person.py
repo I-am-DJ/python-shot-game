@@ -55,3 +55,8 @@ class Person:
         if self.moving_down:
             self.rect.centery += 1
             self.gun_rect.centery += 1
+
+    def is_hurt(self, gun):
+        self.blood -= gun.hurt
+        return self.blood
+
