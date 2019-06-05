@@ -1,8 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 
-from game.main.monster.monster import BaseMonster
-from game.main.person.person import Person
+
 
 
 class Bullet(Sprite):
@@ -36,12 +35,4 @@ class Bullet(Sprite):
         self.move()
         pygame.draw.rect(self.gun.screen, self.color, self.rect)
 
-    def is_hit(self, objects):
-        for something in objects:
-            if something.rect.contains(self.rect):
-                if isinstance(something, Person) or isinstance(something, BaseMonster):
-                    if something.is_hurt(self.gun) <= 0:
-                        return True, something
-                    else:
-                        return True, None
-        return False, None
+

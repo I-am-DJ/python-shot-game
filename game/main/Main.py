@@ -25,7 +25,7 @@ def run_game():
         people.move()
         blit_flush_hero(people, hero_bullets)
         bit_flush_monster(monster_group, monster_bullets)
-        judge_bullet_group(monster_bullets, people)
+        # judge_bullet_group(monster_bullets, people)
         judge_bullet_group(hero_bullets, monster_group)
         for bullet in hero_bullets.copy():
             if bullet.rect.centerx <= 0 or bullet.rect.centery <= 0:
