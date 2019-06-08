@@ -41,8 +41,9 @@ class BaseMonster(Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = self.init_x
         self.rect.centery = self.init_y
-        self.gun.rect.centerx = self.rect.centerx - 10
-        self.gun.rect.centery = self.rect.centery
+        if self.gun:
+            self.gun.rect.centerx = self.rect.centerx - 10
+            self.gun.rect.centery = self.rect.centery
 
     def move(self):
         """小怪看是否带枪，带枪随机移动，不带枪朝人物移动"""

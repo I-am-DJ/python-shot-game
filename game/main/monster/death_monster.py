@@ -19,3 +19,5 @@ class DeathMonster(BaseMonster):
         position = get_init_position(rand, setting)
         self.init_x = position["init_x"]
         self.init_y = position["init_y"]
+
+    # def monster_action(self, monster_bullets):

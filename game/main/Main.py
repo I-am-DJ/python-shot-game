@@ -4,6 +4,7 @@ from pygame.sprite import Group
 
 from game.main.gun.hurt import judge_bullet_group
 from game.main.monster.bullet_monster import BulletMonster
+from game.main.monster.death_monster import DeathMonster
 from game.main.person.person import Person
 from game.main.prop.check_events import check_event
 from game.main.prop.settings import Settings
@@ -42,6 +43,8 @@ def add_monster(monster_group, hero, screen, setting):
         bullet_monster = BulletMonster(hero, screen, setting)
         monster_group.add(bullet_monster)
         i += 1
+    death_monster = DeathMonster(hero, screen, setting)
+    monster_group.add(death_monster)
 
 
 def blit_flush_hero(people, hero_bullets):

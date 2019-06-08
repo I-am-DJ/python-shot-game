@@ -18,7 +18,7 @@ class BulletMonster(BaseMonster):
         self.frequency = 0.5
         self.stop = False
         self.move_stop = False
-        super().__init__(self.image, self.init_x, self.init_y, self.speed, self.gun, hero, screen, blood=2)
+        super().__init__(self.image, self.init_x, self.init_y, self.speed, self.gun, hero, screen, blood=10)
 
     def init_position(self, setting):
         """小怪出生位置为边框附近"""
