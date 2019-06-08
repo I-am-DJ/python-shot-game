@@ -2,8 +2,6 @@ import pygame
 from pygame.sprite import Sprite
 
 
-
-
 class Bullet(Sprite):
 
     def __init__(self, gun, speed):
@@ -34,5 +32,3 @@ class Bullet(Sprite):
     def draw_bullet(self):
         self.move()
         pygame.draw.rect(self.gun.screen, self.color, self.rect)
-
-

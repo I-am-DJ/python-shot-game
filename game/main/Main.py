@@ -1,3 +1,4 @@
+import sys
 
 import pygame as pygame
 from pygame.sprite import Group
@@ -26,7 +27,9 @@ def run_game():
         people.move()
         blit_flush_hero(people, hero_bullets)
         bit_flush_monster(monster_group, monster_bullets)
-        # judge_bullet_group(monster_bullets, people)
+        if not judge_bullet_group(monster_bullets, people):
+            """目前默认hero死亡直接退出"""
+            sys.exit()
         judge_bullet_group(hero_bullets, monster_group)
         for bullet in hero_bullets.copy():
             if bullet.rect.centerx <= 0 or bullet.rect.centery <= 0:

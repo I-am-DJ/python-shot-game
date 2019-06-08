@@ -47,7 +47,7 @@ class BaseMonster(Sprite):
 
     def move(self):
         """小怪看是否带枪，带枪随机移动，不带枪朝人物移动"""
-        if self.gun is not None:
+        if not self.gun:
             mouse_z = get_direction((self.hero.rect.centerx - self.rect.centerx)
                                     , (self.hero.rect.centery - self.rect.centery))
             if mouse_z == 0:
@@ -93,8 +93,9 @@ class BaseMonster(Sprite):
             self.rect.centery = self.screen.get_height() - 10
         elif self.rect.centery < 10:
             self.rect.centery = 10
-        self.gun.rect.centerx = self.rect.centerx - 10
-        self.gun.rect.centery = self.rect.centery
+        if self.gun:
+            self.gun.rect.centerx = self.rect.centerx - 10
+            self.gun.rect.centery = self.rect.centery
 
     def is_hurt(self, gun):
         self.blood -= gun.hurt
