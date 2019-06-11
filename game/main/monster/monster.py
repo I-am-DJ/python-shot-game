@@ -68,6 +68,7 @@ class BaseMonster(Sprite):
                 move_y = -1
             else:
                 move_y = 1
+        
         self.rect.centerx += move_x
         self.rect.centery += move_y
         self.meet_obstacle()

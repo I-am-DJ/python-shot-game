@@ -1,14 +1,12 @@
 import pygame
 
+from game.main.obstacle.obstracle import Obstacle
 
-class ImpossibleObstacle:
+
+class ImpossibleObstacle(Obstacle):
 
     def __init__(self, image, center_x, center_y):
-        self.image = image
-        self.rect = self.image.get_rect()
-        self.rect.centerx = center_x
-        self.rect.centery = center_y
+        super().__init__(image, center_x, center_y)
 
-    def is_contain(self, body):
-        return body.rect.contain(self.rect)
-
+    def is_collision(self, body):
+        pass

@@ -5,7 +5,7 @@ from game.main.gun.base_gun import BaseGun
 
 class Person:
 
-    def __init__(self, screen):
+    def __init__(self, screen, checkCollision):
         self.screen = screen
         self.gun = []
         # 人物出生自带基础武器
@@ -29,6 +29,9 @@ class Person:
         self.moving_left = False
         self.moving_up = False
         self.moving_down = False
+
+        # 碰撞检测机制
+        self.checkCollision = checkCollision
         # todo 只有基础部分
 
     def change_gun(self):
@@ -43,6 +46,15 @@ class Person:
         self.screen.blit(self.current_gun.image, self.gun_rect)
 
     def move(self):
+        dir = self.checkCollision.change_direction(self)
+        if dir == 'UP':
+            self.moving_up = False
+        elif dir == 'DOWN':
+            self.moving_down = False
+        elif dir == 'LEFT':
+            self.moving_left = False
+        elif dir == 'RIGHT':
+            self.moving_right = False
         if self.moving_right:
             self.rect.centerx += 1
             self.gun_rect.centerx += 1
